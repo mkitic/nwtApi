@@ -1,0 +1,40 @@
+{
+  "name": "melaniapi",
+  "version": "1.0.0",
+  "description": "Backend for NWT ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_PATH=. node-dev --no-notify index.js"
+  },
+  "author": "Melani",
+  "license": "ISC",
+  "dependencies": {
+    "babel-plugin-module-resolver": "^4.0.0",
+    "bcrypt": "^5.0.0",
+    "dotenv-safe": "^8.2.0",
+    "is-promise": "^4.0.0",
+    "joi": "^17.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "kcors": "^2.2.2",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-etag": "^4.0.0",
+    "koa-helmet": "^5.2.0",
+    "koa-jwt": "^4.0.0",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^9.4.0",
+    "lodash": "^4.17.20",
+    "sqlite": "^4.0.14",
+    "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.9.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "node-dev": "^5.2.0"
+  }
+}
