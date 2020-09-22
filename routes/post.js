@@ -9,7 +9,7 @@ router.use(responder)
 
 router.post('/like', auth,
   async function (ctx) {
-    console.log('PASTED')
+    console.log('PASTED', ctx.request.body)
     await postRepo.like(ctx.request.body, ctx.state.user.id)
     ctx.state.r = await postRepo.getLikedPostsForUser(ctx.state.user.id)
   },

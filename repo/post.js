@@ -1,16 +1,18 @@
 
 const { db } = require('db')
-const { /* mapper, */ dbMapper } = require('repo/base')
+const { mapper, dbMapper } = require('repo/base')
 
 // id, views, downloads, likes, user, imageUrl
 
-/* const map = mapper({
+const getMapper = mapper({
   id: 'id',
   downloads: 'downloads',
   views: 'views',
   imageUrl: 'imageUrl',
+  likes: 'likes',
   user: 'user',
-}) */
+  tags: 'tags',
+})
 
 async function like (postImage, userId) {
   const { id } = postImage
@@ -24,8 +26,8 @@ async function like (postImage, userId) {
   if (!exists) {
     console.log('like -> dbMapper(postImage)', dbMapper(postImage))
     await db().then(con => con.run(`
-      INSERT INTO imagePost (id, views, downloads, likes, user, imageUrl)
-      VALUES (:id, :views, :downloads, :likes, :user, :imageUrl)`,
+      INSERT INTO imagePost (id, views, downloads, likes, user, imageUrl, tags)
+      VALUES (:id, :views, :downloads, :likes, :user, :imageUrl, :tags)`,
     dbMapper(postImage),
     ))
     console.log('HERE I AM')
@@ -56,8 +58,12 @@ async function like (postImage, userId) {
   }
 }
 
-async function getLikedPostsForUser (params) {
-  return true
+async function getLikedPostsForUser (userId) {
+  return db().then(con => con.all(`
+    SELECT  imagePost.id, user_id, views, downloads, likes, user, imageUrl FROM imagePost JOIN likes l on imagePost.id = l.post_id
+    WHERE  user_id = ?
+  `, [userId]))
+  .then(getMapper)
 }
 
 module.exports = {
