@@ -57,4 +57,5 @@ function mapper (mapping) {
 
 module.exports = {
   mapper,
+  dbMapper: obj => _.mapKeys(obj, (key, value) => `:${value}`),
 }

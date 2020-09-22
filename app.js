@@ -9,6 +9,8 @@ app.use(require('koa-bodyparser')())
 
 // app.use(mount('/', require('routes/profile').routes()))
 app.use(mount('/', require('routes/test').routes()))
+app.use(mount('/', require('routes/profile').routes()))
+app.use(mount('/', require('routes/post').routes()))
 
 app.use(async (ctx, next) => {
   ctx.throw(404)
