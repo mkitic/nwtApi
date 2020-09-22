@@ -31,7 +31,8 @@ async function updateProfile (userId, data) {
   return db().then(con => con.run(`
     UPDATE user
       SET bio = :bio, full_name = :fullName, profile_img = :profileImg, summary = :summary
-  `, dbMapper(data)))
+    WHERE id = :userId
+  `, dbMapper({ ...data, userId })))
   .then(() => true)
 }
 

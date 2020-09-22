@@ -60,7 +60,7 @@ async function like (postImage, userId) {
 
 async function getLikedPostsForUser (userId) {
   return db().then(con => con.all(`
-    SELECT  imagePost.id, user_id, views, downloads, likes, user, imageUrl FROM imagePost JOIN likes l on imagePost.id = l.post_id
+    SELECT  imagePost.id, user_id, views, downloads, tags, likes, user, imageUrl FROM imagePost JOIN likes l on imagePost.id = l.post_id
     WHERE  user_id = ?
   `, [userId]))
   .then(getMapper)
