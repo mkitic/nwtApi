@@ -1,5 +1,5 @@
 const { db } = require('../db')
-const { mapper, dbMapper } = require('repo/base')
+const { mapper, dbMapper } = require('../repo/base')
 
 const getMapper = mapper({
   id: 'id',

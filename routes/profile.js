@@ -1,10 +1,10 @@
 const router = new (require('koa-router'))()
 
 const jwt = require('jsonwebtoken')
-const responder = require('middleware/responder')
-const profileRepo = require('repo/profile')
-const auth = require('middleware/auth')
-const { getLikedPostsForUser } = require('repo/post')
+const responder = require('../middleware/responder')
+const profileRepo = require('../repo/profile')
+const auth = require('../middleware/auth')
+const { getLikedPostsForUser } = require('../repo/post')
 // const validate = require('middleware/validate')
 
 router.use(responder)

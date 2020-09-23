@@ -1,6 +1,6 @@
 
-const { db } = require('db')
-const { mapper, dbMapper } = require('repo/base')
+const { db } = require('../db')
+const { mapper, dbMapper } = require('../repo/base')
 
 // id, views, downloads, likes, user, imageUrl
 
@@ -21,8 +21,6 @@ async function like (postImage, userId) {
     SELECT * FROM imagePost
     WHERE id = ?`, [id]))
   // add to likes
-  console.log('exists:', exists)
-
   if (!exists) {
     console.log('like -> dbMapper(postImage)', dbMapper(postImage))
     await db().then(con => con.run(`
@@ -30,7 +28,6 @@ async function like (postImage, userId) {
       VALUES (:id, :views, :downloads, :likes, :user, :imageUrl, :tags)`,
     dbMapper(postImage),
     ))
-    console.log('HERE I AM')
     await db().then(con => con.run(`
       INSERT INTO likes (user_id, post_id)
       VALUES (:user_id, :post_id)
@@ -41,7 +38,6 @@ async function like (postImage, userId) {
     },
     ))
   } else {
-    console.log('HERE I AM 22')
     const isLiked = await db().then(con => con.get(`
     SELECT * FROM likes
     WHERE post_id = ?
